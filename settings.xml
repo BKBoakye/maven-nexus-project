@@ -16,12 +16,13 @@ software distributed under the License is distributed on an
 "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
 KIND, either express or implied.  See the License for the
 specific language governing permissions and limitations
-under the License. Merge feature-branch changes to main/prod try agin
+under the License.
 -->
 <settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
           xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
   <pluginGroups>
+    <pluginGroup>org.sonarsource.scanner.maven</pluginGroup>
   </pluginGroups>
   <proxies>
   </proxies>
@@ -36,6 +37,7 @@ under the License. Merge feature-branch changes to main/prod try agin
   <mirrors>
   </mirrors>
   <profiles>
+    <!--Apache Tomcat Deployment Server Environment Profile Start-->
     <profile>
       <id>env-dev</id>
 
@@ -50,7 +52,8 @@ under the License. Merge feature-branch changes to main/prod try agin
         <tomcatPath>/path/to/tomcat/instance</tomcatPath>
       </properties>
     </profile>
-	
+  <!--Apache Tomcat Deployment Server Environment Profile End-->
+	<!--Nexus Repository Manager's Profile Start-->
 	<profile>
      <id>snapshot</id>
      <repositories>
@@ -72,6 +75,17 @@ under the License. Merge feature-branch changes to main/prod try agin
        </repository>
      </repositories>
    </profile>
-    
+   <!--Nexus Repository Manager's Profile End-->
+   <!--SonarQube/Sonar Profile-->
+   <profile>
+      <id>sonar</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      <properties>
+        <sonar.host.url>http://44.203.4.255:9000</sonar.host.url>
+      </properties>
+    </profile>
+    <!--End SonarQube/Sonar Profile-->
   </profiles>
 </settings>
